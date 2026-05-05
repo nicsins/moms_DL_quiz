@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnesota Driver's Test Prep • For Mom ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600&amp;display=swap');
+        
+        :root {
+            --primary: #1e40af;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .header-font {
+            font-family: 'Poppins', system_ui, sans-serif;
+            font-weight: 700;
+        }
+
+        .big-text {
+            font-size: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .question-text {
+            font-size: 1.35rem;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        .option-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.1rem;
+            padding: 1rem 1.25rem;
+            border: 3px solid #e5e7eb;
+            border-radius: 16px;
+            text-align: left;
+            width: 100%;
+        }
+        
+        .option-btn:hover {
+            border-color: #3b82f6;
+            background-color: #f0f9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(59 130 246 / 0.1);
+        }
+        
+        .option-btn.selected {
+            border-color: #3b82f6;
+            background-color: #dbeafe;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .correct {
+            border-color: #22c55e !important;
+            background-color: #dcfce7 !important;
+        }
+
+        .incorrect {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+        }
+
+        .nav-active {
+            background-color: #1e40af;
+            color: white;
+            border-radius: 9999px;
+        }
+
+        .section {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .fact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .mn-blue {
+            color: #1e40af;
+        }
+
+        .large-btn {
+            font-size: 1.25rem;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            box-shadow: 0 10px 15px -3px rgb(30 64 175 / 0.3);
+        }
+
+        .quiz-container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .highlight {
+            background-color: #fefce8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+    <!-- Top Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-x-4">
+                    <div class="w-14 h-14 bg-blue-700 rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-car text-white text-3xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-slate-900 header-font">MN Driver's Test</h1>
+                        <p class="text-sm text-slate-500 -mt-1">For Mom • Made with ❤️ by your son</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-x-3">
+                    <div onclick="showSection('home')" 
+                         class="cursor-pointer px-5 py-2.5 text-sm font-semibold flex items-center gap-x-2 hover:bg-slate-100 rounded-3xl transition-colors">
+                        <i class="fas fa-home text-blue-600"></i>
+                        <span>Home</span>
+                    </div>
+                    <div onclick="showSection('study')" 
+                         class="cursor-pointer px-5 py-2.5 text-sm font-semibold flex items-center gap-x-2 hover:bg-slate-100 rounded-3xl transition-colors">
+                        <i class="fas fa-book text-blue-600"></i>
+                        <span>Study Guide</span>
+                    </div>
+                    <div onclick="showSection('quiz')" 
+                         class="cursor-pointer px-5 py-2.5 text-sm font-semibold flex items-center gap-x-2 hover:bg-slate-100 rounded-3xl transition-colors">
+                        <i class="fas fa-question-circle text-blue-600"></i>
+                        <span>Practice Quiz</span>
+                    </div>
+                    <div onclick="showSection('differences')" 
+                         class="cursor-pointer px-5 py-2.5 text-sm font-semibold flex items-center gap-x-2 hover:bg-slate-100 rounded-3xl transition-colors">
+                        <i class="fas fa-exchange-alt text-blue-600"></i>
+                        <span>Ohio vs MN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <div id="home" class="section max-w-5xl mx-auto px-6 pt-12 pb-20">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-x-3 bg-white px-6 py-3 rounded-3xl shadow mb-6">
+                <div class="flex -space-x-2">
+                    <div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center ring-2 ring-white"><i class="fas fa-check text-white text-sm"></i></div>
+                    <div class="w-9 h-9 bg-emerald-500 rounded-full flex items-center justify-center ring-2 ring-white"><i class="fas fa-check text-white text-sm"></i></div>
+                </div>
+                <span class="font-semibold text-emerald-700">100% based on official MN DPS materials</span>
+            </div>
+            
+            <h2 class="text-6xl font-extrabold text-slate-900 tracking-tighter mb-4 header-font">Ready for your<br>Minnesota test, Mom?</h2>
+            <p class="max-w-2xl mx-auto text-2xl text-slate-600">This simple app has everything you need.<br>Big text, easy buttons, and all the real questions.</p>
+            
+            <div class="flex justify-center gap-x-4 mt-10">
+                <button onclick="showSection('study')" 
+                        class="large-btn bg-white text-blue-700 border-2 border-blue-700 hover:bg-blue-50 px-10 py-4 flex items-center gap-x-3 shadow-xl">
+                    <i class="fas fa-book"></i>
+                    <span>Start Studying</span>
+                </button>
+                <button onclick="showSection('quiz')" 
+                        class="large-btn bg-blue-700 hover:bg-blue-800 text-white px-10 py-4 flex items-center gap-x-3 shadow-xl">
+                    <i class="fas fa-play"></i>
+                    <span>Take the Quiz Now</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl p-8 shadow-xl fact-card">
+                <div class="text-blue-600 mb-4"><i class="fas fa-clipboard-list fa-3x"></i></div>
+                <h3 class="text-2xl font-bold mb-3">40 Real Questions</h3>
+                <p class="text-slate-600 big-text">Exactly like the official test. Covers every topic from the Minnesota Driver’s Manual.</p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 shadow-xl fact-card">
+                <div class="text-emerald-600 mb-4"><i class="fas fa-check-circle fa-3x"></i></div>
+                <h3 class="text-2xl font-bold mb-3">Instant Feedback</h3>
+                <p class="text-slate-600 big-text">See what you got right or wrong right away with clear explanations.</p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 shadow-xl fact-card">
+                <div class="text-amber-600 mb-4"><i class="fas fa-redo fa-3x"></i></div>
+                <h3 class="text-2xl font-bold mb-3">Practice as Much as You Want</h3>
+                <p class="text-slate-600 big-text">Retake the quiz anytime. The more you practice, the more confident you'll feel tomorrow!</p>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center text-sm text-slate-500">
+            <p>Official source: Minnesota Department of Public Safety (DPS) • drive.mn.gov</p>
+            <p class="mt-1">Test has 40 questions • Need 32 correct (80%) to pass</p>
+        </div>
+    </div>
+
+    <!-- STUDY GUIDE SECTION -->
+    <div id="study" class="section hidden max-w-6xl mx-auto px-6 py-12">
+        <div class="flex items-center justify-between mb-10">
+            <div>
+                <h2 class="text-5xl font-extrabold text-slate-900 header-font">Study Guide</h2>
+                <p class="text-2xl text-slate-600 mt-2">Read these key facts carefully. They're the most important things on the test!</p>
+            </div>
+            <button onclick="showSection('quiz')" class="large-btn bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 flex items-center gap-x-3">
+                <span>I'm Ready — Start Quiz</span> <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="study-grid">
+            <!-- Road Signs -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center"><i class="fas fa-exclamation-triangle text-red-600 text-3xl"></i></div>
+                    <h3 class="text-3xl font-bold">Road Signs &amp; Markings</h3>
+                </div>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Red signs</strong> = Stop or do not do something</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Yellow / Yellow-Green</strong> = Warning (school zones, curves, pedestrians)</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Orange</strong> = Construction / Work zone — slow down!</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Broken white line</strong> = You can change lanes or pass</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Solid yellow line</strong> = No passing (double solid = very dangerous)</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Red arrow = Do NOT turn in that direction until green</span></li>
+                </ul>
+            </div>
+
+            <!-- Right of Way & Rules -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center"><i class="fas fa-hand-paper text-blue-600 text-3xl"></i></div>
+                    <h3 class="text-3xl font-bold">Right-of-Way Rules</h3>
+                </div>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>At 4-way stop or no signs: <strong>Yield to the driver on your right</strong></span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Always yield to <strong>pedestrians</strong> in crosswalks (even unmarked)</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>School bus</strong> with red lights + stop arm = STOP 20+ feet away. Do not pass!</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Emergency vehicles (lights + siren) = Pull to the right and stop</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Move Over Law</strong>: Slow down + change lanes away from stopped emergency/tow/maintenance vehicles</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Roundabouts: Yield to traffic already in the circle</span></li>
+                </ul>
+            </div>
+
+            <!-- Speed & Passing -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center"><i class="fas fa-tachometer-alt text-amber-600 text-3xl"></i></div>
+                    <h3 class="text-3xl font-bold">Speed &amp; Passing</h3>
+                </div>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Default limits: <strong>30 mph</strong> in towns, <strong>55 mph</strong> on highways, <strong>10-15 mph</strong> in alleys</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Always drive at a speed that is <strong>reasonable for conditions</strong> (weather, traffic)</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Pass on the <strong>left</strong>. Return to right lane when you can see the other car in your mirror</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Never pass on hills, curves, or within 100 ft of intersections or railroad crossings</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Speeding 20+ mph over = bigger fines. 100+ mph = license revoked 6 months</span></li>
+                </ul>
+            </div>
+
+            <!-- Winter & Night Driving -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center"><i class="fas fa-snowflake text-sky-600 text-3xl"></i></div>
+                    <h3 class="text-3xl font-bold">Winter &amp; Night Driving (Very Important in MN!)</h3>
+                </div>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Headlights ON</strong> when visibility is less than 500 feet OR in rain, snow, sleet, hail, or fog</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Use <strong>low beams</strong> in snow, fog, or when following another car</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Clear ALL snow and ice from windows, mirrors, and lights before driving</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Increase following distance to <strong>4–5 seconds</strong> in bad weather</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>If stranded: Stay in car, hazards on, run heater 10 min per hour, keep a window cracked</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Never pass a snowplow — wait until you can see the whole vehicle</span></li>
+                </ul>
+            </div>
+
+            <!-- Distracted Driving & Seat Belts -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center"><i class="fas fa-mobile-alt text-purple-600 text-3xl"></i></div>
+                    <h3 class="text-3xl font-bold">Distracted Driving &amp; Seat Belts</h3>
+                </div>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Hands-free law</strong>: You may NOT hold your phone while driving — even at a red light! Use voice commands or a mounted phone only.</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span><strong>Seat belts are PRIMARY law</strong> — police can stop you just for not wearing one. Everyone in every seat must be buckled!</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Never text, scroll, or use social media while driving</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Child seats: Follow the law exactly — rear-facing until at least age 2, etc.</span></li>
+                </ul>
+            </div>
+
+            <!-- Alcohol & Other -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-100">
+                <div class="flex items-center gap-x-4 mb-6">
+                    <div class="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center"><i class="fas fa-wine-glass-alt text-rose-600 text-3xl"></i></div>
+                    <h3 class="text-3xl font-bold">Alcohol, Drugs &amp; Other Rules</h3>
+                </div>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Legal limit: <strong>0.08%</strong> BAC (0.04% for commercial). Even less can impair you!</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Never drive after drinking or taking medications that make you drowsy</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Right turn on red: OK after full stop + yield, unless sign says no</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Never block intersections — wait until you can clear it completely</span></li>
+                    <li class="flex gap-x-3"><i class="fas fa-check text-emerald-500 mt-1.5"></i> <span>Railroad crossings: Stop if lights flashing or gates down. Look both ways!</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-12 bg-blue-900 text-white rounded-3xl p-10 text-center">
+            <h3 class="text-3xl font-bold mb-4">Pro Tip from the Manual</h3>
+            <p class="text-2xl max-w-3xl mx-auto">Use the <strong>SIPDE</strong> method every time you drive: <span class="font-bold">S</span>can, <span class="font-bold">I</span>dentify, <span class="font-bold">P</span>redict, <span class="font-bold">D</span>ecide, <span class="font-bold">E</span>xecute. It saves lives!</p>
+        </div>
+    </div>
+
+    <!-- DIFFERENCES SECTION -->
+    <div id="differences" class="section hidden max-w-5xl mx-auto px-6 py-12">
+        <div class="bg-white rounded-3xl shadow-2xl p-10 border border-amber-200">
+            <div class="flex items-center gap-x-5 mb-8">
+                <div class="text-6xl">🇺🇸</div>
+                <div>
+                    <h2 class="text-5xl font-extrabold text-slate-900 header-font">Ohio vs Minnesota</h2>
+                    <p class="text-2xl text-amber-700 font-semibold mt-2">Important things that are DIFFERENT here in Minnesota</p>
+                </div>
+            </div>
+
+            <div class="space-y-8 text-xl">
+                <div class="flex gap-6 bg-amber-50 p-6 rounded-2xl">
+                    <div class="w-16 flex-shrink-0"><i class="fas fa-car-side text-4xl text-amber-600"></i></div>
+                    <div>
+                        <h4 class="font-extrabold text-2xl mb-2">Seat Belt Law</h4>
+                        <p><span class="font-bold text-emerald-700">Minnesota (PRIMARY):</span> Police can pull you over <strong>just for not wearing your seat belt</strong>. Every person in every seat must be buckled up. Fine: $25.</p>
+                        <p class="mt-2 text-amber-700"><span class="font-bold">Ohio (SECONDARY):</span> They can only ticket you if they stopped you for something else first. Usually only front seat required in many cases.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 bg-amber-50 p-6 rounded-2xl">
+                    <div class="w-16 flex-shrink-0"><i class="fas fa-mobile-alt text-4xl text-amber-600"></i></div>
+                    <div>
+                        <h4 class="font-extrabold text-2xl mb-2">Cell Phone / Hands-Free Law</h4>
+                        <p><span class="font-bold text-emerald-700">Minnesota:</span> You <strong>CANNOT hold your phone at all</strong> while driving — even when stopped at a red light or in traffic. Must be mounted or use voice commands / single touch only. Fines start at $100+.</p>
+                        <p class="mt-2 text-amber-700"><span class="font-bold">Ohio:</span> Texting is banned, but holding the phone for calls may be allowed in some situations (check current Ohio law). MN is stricter.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 bg-amber-50 p-6 rounded-2xl">
+                    <div class="w-16 flex-shrink-0"><i class="fas fa-snowflake text-4xl text-amber-600"></i></div>
+                    <div>
+                        <h4 class="font-extrabold text-2xl mb-2">Winter Driving</h4>
+                        <p><span class="font-bold text-emerald-700">Minnesota:</span> The test has many questions about snow, ice, black ice, snowplows, and what to do if stranded. You must clear every bit of snow/ice. Headlights required in snow/rain/fog.</p>
+                        <p class="mt-2 text-amber-700"><span class="font-bold">Ohio:</span> Winters are milder. Less emphasis on these topics on the Ohio test.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 bg-amber-50 p-6 rounded-2xl">
+                    <div class="w-16 flex-shrink-0"><i class="fas fa-exclamation-triangle text-4xl text-amber-600"></i></div>
+                    <div>
+                        <h4 class="font-extrabold text-2xl mb-2">Other Big Differences</h4>
+                        <ul class="list-disc pl-6 space-y-2 text-lg">
+                            <li><strong>Move Over Law</strong> is very strictly enforced in MN — slow down AND move over for any stopped emergency, tow, or road work vehicle with lights.</li>
+                            <li><strong>School bus</strong> rules are the same, but MN has specific rules about divided highways (you don't stop if bus is on opposite side of divided road).</li>
+                            <li><strong>Headlights</strong>: Must be on whenever you can't see 500 feet ahead or in rain/snow/fog.</li>
+                            <li>MN has <strong>reduced conflict intersections</strong> and J-turns that you won't see as much in Ohio.</li>
+                            <li>Default alley speed is often <strong>10-15 mph</strong> in MN.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 p-6 bg-blue-700 text-white rounded-2xl text-center">
+                <p class="text-2xl font-semibold">Don't worry — the quiz below includes all these MN-specific rules!</p>
+                <button onclick="showSection('quiz')" class="mt-6 large-btn bg-white text-blue-700 hover:bg-blue-100 px-10 py-3">Start Practicing Now →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ SECTION -->
+    <div id="quiz" class="section hidden max-w-[820px] mx-auto px-6 py-12">
+        <div class="quiz-container">
+            <!-- Quiz Header -->
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-4xl font-extrabold text-slate-900">Practice Quiz</h2>
+                    <p class="text-xl text-slate-600">40 questions • Just like the real test</p>
+                </div>
+                <div class="text-right">
+                    <div id="progress-text" class="text-sm font-mono text-slate-500">Question <span id="current-q">1</span>/40</div>
+                    <div class="w-40 bg-slate-200 h-3 rounded-full mt-1.5 overflow-hidden">
+                        <div id="progress-bar" class="bg-blue-600 h-3 transition-all" style="width: 2.5%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-3xl shadow-2xl p-10 border border-slate-100" id="question-card">
+                <div id="question-number" class="text-blue-600 font-bold text-lg mb-3"></div>
+                <div id="question-text" class="question-text text-slate-900 mb-8 leading-snug"></div>
+                
+                <div id="options-container" class="space-y-4"></div>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="flex justify-between items-center mt-8">
+                <button onclick="prevQuestion()" id="prev-btn"
+                        class="px-8 py-3.5 text-lg font-semibold bg-white border-2 border-slate-300 hover:bg-slate-50 rounded-3xl flex items-center gap-x-3 disabled:opacity-40">
+                    <i class="fas fa-arrow-left"></i> <span>Previous</span>
+                </button>
+                
+                <button onclick="nextQuestion()" id="next-btn"
+                        class="px-10 py-3.5 text-lg font-bold bg-blue-700 hover:bg-blue-800 text-white rounded-3xl flex items-center gap-x-3 shadow-lg">
+                    <span id="next-btn-text">Next Question</span> <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="text-center mt-6">
+                <button onclick="submitQuiz()" id="submit-btn"
+                        class="hidden px-14 py-4 text-xl font-extrabold bg-emerald-600 hover:bg-emerald-700 text-white rounded-3xl shadow-xl flex items-center gap-x-3 mx-auto">
+                    <i class="fas fa-check-double"></i>
+                    <span>SUBMIT &amp; SEE MY SCORE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
+        <div class="bg-white rounded-3xl max-w-2xl w-full mx-4 shadow-2xl overflow-hidden">
+            <div class="px-10 pt-10 pb-8 text-center bg-gradient-to-br from-blue-700 to-blue-900 text-white">
+                <h3 class="text-4xl font-extrabold mb-2">Your Results</h3>
+                <div id="score-display" class="text-7xl font-black my-4"></div>
+                <p id="score-message" class="text-2xl font-semibold"></p>
+            </div>
+            
+            <div class="p-10">
+                <div id="review-section" class="max-h-[420px] overflow-y-auto pr-2 space-y-4 text-lg"></div>
+                
+                <div class="flex gap-4 mt-10">
+                    <button onclick="restartQuiz()" 
+                            class="flex-1 py-4 text-xl font-bold bg-white border-2 border-blue-700 text-blue-700 hover:bg-blue-50 rounded-3xl flex items-center justify-center gap-x-3">
+                        <i class="fas fa-redo"></i> <span>Take Again</span>
+                    </button>
+                    <button onclick="showSection('study'); closeResults()" 
+                            class="flex-1 py-4 text-xl font-bold bg-blue-700 hover:bg-blue-800 text-white rounded-3xl flex items-center justify-center gap-x-3">
+                        <span>Review Study Guide</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-8 text-sm text-slate-400">
+        Made with love for the best mom in Minnesota • All questions based on official 2025-2026 Minnesota Driver’s Manual
+    </footer>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#1e40af');
+        }
+
+        // Quiz Data - 40 comprehensive questions based on official MN DPS materials
+        const quizQuestions = [
+            {
+                id: 1,
+                q: "You may pass another vehicle if the line dividing your lane from the lane you wish to enter is a ____ line.",
+                options: ["Broken white", "Double solid yellow", "Solid yellow", "Solid white"],
+                correct: 0,
+                explanation: "Broken white lines mean you may pass or change lanes when safe. Double solid yellow means no passing in either direction."
+            },
+            {
+                id: 2,
+                q: "When making a turn, you must ____ your speed.",
+                options: ["Increase", "Maintain", "Vary", "Reduce"],
+                correct: 3,
+                explanation: "Always reduce your speed before turning to maintain control and allow time to scan for hazards."
+            },
+            {
+                id: 3,
+                q: "To prepare for anything coming up on the road ahead, you should:",
+                options: ["Continually scan the entire road and all roadsides", "Stare straight ahead at all times", "Drive with your left foot resting lightly on the brake pedal", "Maintain focus toward the middle of the road"],
+                correct: 0,
+                explanation: "Use the SIPDE system: Scan continuously. This is one of the most important safe driving habits."
+            },
+            {
+                id: 4,
+                q: "You are driving on a busy street, and your vehicle’s accelerator sticks open. What should you do first?",
+                options: ["Blow your horn", "Slam on your brakes", "Shift to neutral and steer to the side of the road", "Turn on your four-way flashers only"],
+                correct: 2,
+                explanation: "Shift to neutral immediately to disengage the engine, then steer safely off the road and use brakes."
+            },
+            {
+                id: 5,
+                q: "When approaching a reduced conflict intersection, you may not turn left from the main road.",
+                options: ["True", "False"],
+                correct: 0,
+                explanation: "True. Reduced conflict intersections (common in MN) are designed so you cannot make left turns from the main highway — you use a right turn then U-turn instead."
+            },
+            {
+                id: 6,
+                q: "At night, it is hardest to see:",
+                options: ["Road signs", "Pedestrians", "Other motorists", "Streetlights"],
+                correct: 1,
+                explanation: "Pedestrians are hardest to see at night because they often wear dark clothing and are not illuminated like cars or signs."
+            },
+            {
+                id: 7,
+                q: "If you stop along the road at night because of a breakdown:",
+                options: ["Turn off all your lights", "Use your parking lights only", "Use your headlights only", "Turn on your emergency flashers and leave low beams on"],
+                correct: 3,
+                explanation: "Use emergency flashers + low beams so other drivers can see you from far away."
+            },
+            {
+                id: 8,
+                q: "Pedestrians using guide dogs or white canes must be given the right-of-way:",
+                options: ["Only at corners", "Only at intersections with traffic controls", "At all times when they are crossing or about to cross", "Never — they must wait for assistance"],
+                correct: 2,
+                explanation: "Always yield to anyone with a white cane or guide dog. They have the right-of-way everywhere."
+            },
+            {
+                id: 9,
+                q: "Before you leave a parallel parking space, you should:",
+                options: ["Sound your horn", "Turn on your 4-way flashers", "Look for traffic by turning your head over your shoulder", "Only check your rear-view mirror"],
+                correct: 2,
+                explanation: "Always turn your head and look over your shoulder (blind spot check) before pulling out."
+            },
+            {
+                id: 10,
+                q: "On a road with three or more lanes traveling in the same direction, you should stay in the ____ lane except to pass.",
+                options: ["Left-hand", "Shoulder", "Middle", "Right-hand"],
+                correct: 3,
+                explanation: "Stay in the right lane unless passing. The left lane is for passing only on multi-lane roads."
+            },
+            {
+                id: 11,
+                q: "When driving through fog or heavy rain, it is best to:",
+                options: ["Turn on your parking lights only", "Turn on your 4-way hazard lights", "Use low-beam headlights", "Drive with high beams on"],
+                correct: 2,
+                explanation: "Low beams are required in fog/rain/snow. High beams reflect off the moisture and make it harder to see."
+            },
+            {
+                id: 12,
+                q: "Preparing to smoke or smoking while driving is considered:",
+                options: ["Helpful for alertness", "Not distracting", "A distracting activity", "Only a problem at night"],
+                correct: 2,
+                explanation: "Any activity that takes your hands or eyes off the road is distracting. Smoking is explicitly listed as distracting in the manual."
+            },
+            {
+                id: 13,
+                q: "What does alcohol do to your driving skills and judgment?",
+                options: ["It has no effect", "It harms only driving skills", "It harms only judgment", "It harms both driving skills and judgment"],
+                correct: 3,
+                explanation: "Alcohol impairs reaction time, vision, judgment, and coordination — everything you need to drive safely."
+            },
+            {
+                id: 14,
+                q: "A red arrow pointing to the right on a traffic light means:",
+                options: ["Turn right after coming to a complete stop", "Do not turn right until the light turns green", "Turn right after slowing down", "Turn right only if no pedestrians are present"],
+                correct: 1,
+                explanation: "A red arrow means you must wait for a green arrow or green light before turning in that direction."
+            },
+            {
+                id: 15,
+                q: "When you enter traffic from a stop (pulling away from the curb), you should:",
+                options: ["Drive slower than traffic for 200 feet", "Wait for a large enough gap to reach the speed of traffic safely", "Pull out immediately after the first car passes", "Use your horn to warn others"],
+                correct: 1,
+                explanation: "You need a big enough gap so you can accelerate up to the speed of traffic without causing others to brake suddenly."
+            },
+            {
+                id: 16,
+                q: "You should always use your emergency flashers when:",
+                options: ["You are double-parked in a traffic lane", "You are parked in a marked parking spot", "Your vehicle has broken down on the roadway", "You are driving in heavy rain"],
+                correct: 2,
+                explanation: "Use flashers when you are stopped on the roadway or shoulder due to a breakdown or emergency."
+            },
+            {
+                id: 17,
+                q: "The traffic light is red, but a police officer is directing you to proceed. What should you do?",
+                options: ["Refuse to move", "Proceed as the officer directs", "Honk your horn and wait", "Ignore the officer and obey the light"],
+                correct: 1,
+                explanation: "A police officer’s directions always override traffic signals and signs."
+            },
+            {
+                id: 18,
+                q: "If you are under 18 and your cell phone rings while driving, what should you do?",
+                options: ["Answer it if you have a hands-free device", "Let it go to voicemail", "Answer only if it's your parent", "Text the caller that you are driving"],
+                correct: 1,
+                explanation: "Under 18 drivers in MN have stricter rules. The safest and legal choice is to let it ring and call back later when stopped."
+            },
+            {
+                id: 19,
+                q: "At night, if an oncoming vehicle does not dim its high beams, you should:",
+                options: ["Look toward the center of the roadway", "Look toward the right edge of your lane", "Look toward the left edge of your lane", "Close your eyes briefly"],
+                correct: 1,
+                explanation: "Look at the right edge of the road so the bright lights don't blind you and you can still see the lane."
+            },
+            {
+                id: 20,
+                q: "Teenage drivers are more likely to be involved in a crash when:",
+                options: ["Driving with adult passengers", "Driving with teenage passengers", "Driving alone", "Driving during the day"],
+                correct: 1,
+                explanation: "Distraction from friends in the car is a major cause of teen crashes. The manual highlights this risk."
+            },
+            {
+                id: 21,
+                q: "You must use your headlights:",
+                options: ["Only at night", "On rainy, snowy, or foggy days", "Only when it's completely dark", "Only on highways"],
+                correct: 1,
+                explanation: "Minnesota law requires headlights whenever visibility is poor (less than 500 feet) or in rain, snow, sleet, hail, or fog."
+            },
+            {
+                id: 22,
+                q: "When you want to make a right turn, your car should be positioned:",
+                options: ["Near the center of the street", "Close to the left side of the street", "Close to the right side of the street", "In the middle of the right lane"],
+                correct: 2,
+                explanation: "Always position yourself close to the right curb or edge before making a right turn."
+            },
+            {
+                id: 23,
+                q: "When a traffic light turns green, should you go immediately?",
+                options: ["Yes, or you could get a ticket for causing gridlock", "No — wait 5 seconds first", "Yes, but only after yielding to vehicles or pedestrians still in the intersection", "No — always wait for the car in front of you to move first"],
+                correct: 2,
+                explanation: "Even on green, you must yield to anyone still legally in the intersection and make sure it's clear."
+            },
+            {
+                id: 24,
+                q: "If you see orange construction signs and cones on a freeway, you must:",
+                options: ["Maintain your current speed", "Be prepared for workers and equipment ahead and slow down if workers are present", "Change lanes immediately", "Ignore them if no workers are visible"],
+                correct: 1,
+                explanation: "Orange = construction. Slow down, watch for workers, and fines are doubled ($300+) if workers are present."
+            },
+            {
+                id: 25,
+                q: "What is the correct following distance in good weather conditions?",
+                options: ["1 second", "2 seconds", "3 seconds", "5 seconds"],
+                correct: 2,
+                explanation: "Use the 3-second rule in good conditions. Count 'one-thousand-one, one-thousand-two...' as the car ahead passes a fixed point."
+            },
+            {
+                id: 26,
+                q: "When approaching a school bus with flashing red lights and an extended stop arm, you must:",
+                options: ["Slow down and proceed with caution", "Stop at least 20 feet away and remain stopped until the lights are off and arm is retracted", "Pass on the right if there is room", "Only stop if children are visible"],
+                correct: 1,
+                explanation: "This is one of the strictest rules. Violation can result in large fines and license suspension."
+            },
+            {
+                id: 27,
+                q: "In Minnesota, the hands-free cell phone law means:",
+                options: ["You can hold your phone if you're just talking", "You cannot hold your phone at all while the vehicle is in motion or stopped in traffic", "You can only use it for GPS", "It only applies to drivers under 18"],
+                correct: 1,
+                explanation: "You may not hold the phone in your hand for any reason while driving or stopped in traffic. Mount it or use voice commands."
+            },
+            {
+                id: 28,
+                q: "What does a solid white line on the pavement mean?",
+                options: ["You may change lanes freely", "Lane changes are discouraged or prohibited", "It is a passing zone", "It marks the edge of the road only"],
+                correct: 1,
+                explanation: "Solid white lines mean you should stay in your lane. Crossing is discouraged and often illegal."
+            },
+            {
+                id: 29,
+                q: "If you are approaching a railroad crossing with flashing red lights and lowered gates, you must:",
+                options: ["Slow down and look both ways", "Stop at least 10 feet from the nearest rail and remain stopped until the lights stop flashing", "Proceed if no train is visible", "Cross quickly before the gates fully lower"],
+                correct: 1,
+                explanation: "Never try to beat a train. Stop and wait until the lights stop and gates go up."
+            },
+            {
+                id: 30,
+                q: "The legal blood alcohol concentration (BAC) limit for regular drivers in Minnesota is:",
+                options: ["0.05%", "0.08%", "0.10%", "0.00% (zero tolerance for everyone)"],
+                correct: 1,
+                explanation: "0.08% for regular drivers. 0.04% for commercial drivers. Even below the limit, you can be charged if impaired."
+            },
+            {
+                id: 31,
+                q: "When parking on a hill with a curb, facing downhill, you should turn your wheels:",
+                options: ["Toward the curb", "Away from the curb", "Straight ahead", "It doesn't matter"],
+                correct: 0,
+                explanation: "Turn wheels toward the curb so the car will roll into the curb if the brakes fail."
+            },
+            {
+                id: 32,
+                q: "What should you do when you see a vehicle with flashing blue or red lights approaching from behind?",
+                options: ["Speed up to get out of the way", "Pull to the right and stop", "Move to the left lane", "Continue driving normally"],
+                correct: 1,
+                explanation: "Pull over to the right shoulder and stop completely. This is for emergency vehicles."
+            },
+            {
+                id: 33,
+                q: "In a roundabout, you should:",
+                options: ["Yield to traffic already in the circle and drive counterclockwise", "Enter without yielding if you are in a hurry", "Drive clockwise", "Stop in the middle of the roundabout"],
+                correct: 0,
+                explanation: "Always yield to vehicles already circulating. Drive counterclockwise and use your right turn signal when exiting."
+            },
+            {
+                id: 34,
+                q: "Minnesota’s Move Over Law requires you to:",
+                options: ["Only slow down for police cars", "Slow down and move over one lane (if safe) when approaching any stopped emergency, tow, or maintenance vehicle with flashing lights", "Only move over on highways", "Ignore it if traffic is heavy"],
+                correct: 1,
+                explanation: "This law protects first responders and tow truck drivers. It applies to any vehicle with flashing lights on the shoulder."
+            },
+            {
+                id: 35,
+                q: "What is the correct way to exit a parallel parking space?",
+                options: ["Back straight out without looking", "Signal, check mirrors and blind spot, then back out slowly", "Honk and back out quickly", "Only check your rearview mirror"],
+                correct: 1,
+                explanation: "Always signal, check all mirrors and blind spots, and back out slowly while watching for traffic and pedestrians."
+            },
+            {
+                id: 36,
+                q: "If your car starts to skid on ice or snow, you should:",
+                options: ["Brake hard immediately", "Turn the steering wheel in the opposite direction of the skid", "Steer in the direction you want the front of the car to go and ease off the gas", "Accelerate to regain control"],
+                correct: 2,
+                explanation: "Steer gently in the direction you want to go. Do not brake hard or overcorrect."
+            },
+            {
+                id: 37,
+                q: "A flashing yellow light means:",
+                options: ["Stop completely", "Proceed with caution and yield to traffic already in the intersection", "Speed up to clear the intersection", "It is the same as a green light"],
+                correct: 1,
+                explanation: "Flashing yellow = caution. Slow down and be prepared to stop if necessary."
+            },
+            {
+                id: 38,
+                q: "How far in advance should you signal before changing lanes or turning?",
+                options: ["50 feet", "100 feet", "200 feet", "Only when you start the maneuver"],
+                correct: 1,
+                explanation: "Signal at least 100 feet before turning or changing lanes in Minnesota."
+            },
+            {
+                id: 39,
+                q: "When driving near large trucks or buses, you should:",
+                options: ["Stay in their blind spots as little as possible", "Follow closely so they can see you in their mirrors", "Pass them on the right whenever possible", "Assume they can see you at all times"],
+                correct: 0,
+                explanation: "Large vehicles have big blind spots ('No-Zones'). Avoid riding beside them. Pass quickly and safely on the left."
+            },
+            {
+                id: 40,
+                q: "If you are involved in a minor crash with no injuries, what should you do first?",
+                options: ["Leave the scene immediately", "Move vehicles out of traffic if safe, then exchange information and report if required", "Call the police even if no one is hurt", "Take photos and leave without talking to the other driver"],
+                correct: 1,
+                explanation: "Protect the scene, move cars if possible, exchange info (license, insurance, contact), and report to police if damage is over a certain amount or if required by law."
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let quizStarted = false;
+
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+            
+            // Show requested section
+            const target = document.getElementById(section);
+            if (target) {
+                target.classList.remove('hidden');
+                
+                // Special actions
+                if (section === 'quiz' && !quizStarted) {
+                    startQuiz();
+                }
+            }
+        }
+
+        function startQuiz() {
+            quizStarted = true;
+            currentQuestionIndex = 0;
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            
+            document.getElementById('submit-btn').classList.add('hidden');
+            document.getElementById('prev-btn').disabled = true;
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = quizQuestions[currentQuestionIndex];
+            const card = document.getElementById('question-card');
+            
+            // Update progress
+            document.getElementById('current-q').textContent = currentQuestionIndex + 1;
+            const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            
+            // Question number and text
+            document.getElementById('question-number').innerHTML = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+            document.getElementById('question-text').innerHTML = q.q;
+            
+            // Options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = `option-btn w-full text-left px-6 py-4 border-2 border-slate-300 hover:border-blue-500 rounded-2xl flex items-start gap-x-4 text-lg ${userAnswers[currentQuestionIndex] === index ? 'selected' : ''}`;
+                btn.innerHTML = `
+                    <div class="w-8 h-8 flex-shrink-0 mt-0.5 flex items-center justify-center border-2 border-slate-400 rounded-full text-sm font-bold">
+                        ${String.fromCharCode(65 + index)}
+                    </div>
+                    <div class="flex-1 text-left">${option}</div>
+                `;
+                
+                btn.onclick = () => selectAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+            
+            // Update buttons
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+            
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+                document.getElementById('next-btn-text').textContent = 'Next Question';
+            }
+        }
+
+        function selectAnswer(index, btnElement) {
+            // Deselect all
+            document.querySelectorAll('#options-container button').forEach(b => {
+                b.classList.remove('selected');
+                b.style.borderColor = '#cbd5e1';
+            });
+            
+            // Select this one
+            btnElement.classList.add('selected');
+            btnElement.style.borderColor = '#3b82f6';
+            
+            // Save answer
+            userAnswers[currentQuestionIndex] = index;
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            // Check if all answered
+            const unanswered = userAnswers.filter(a => a === null).length;
+            if (unanswered > 0) {
+                if (!confirm(`You have ${unanswered} unanswered questions. Submit anyway?`)) {
+                    return;
+                }
+            }
+            
+            let score = 0;
+            const reviewHTML = [];
+            
+            quizQuestions.forEach((q, i) => {
+                const userAnswer = userAnswers[i];
+                const isCorrect = userAnswer === q.correct;
+                if (isCorrect) score++;
+                
+                const status = isCorrect ? 
+                    `<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-emerald-100 text-emerald-700"><i class="fas fa-check mr-1"></i> Correct</span>` : 
+                    `<span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-red-100 text-red-700"><i class="fas fa-times mr-1"></i> Incorrect</span>`;
+                
+                const userChoice = userAnswer !== null ? q.options[userAnswer] : '<em>Not answered</em>';
+                const correctChoice = q.options[q.correct];
+                
+                reviewHTML.push(`
+                    <div class="border-l-4 ${isCorrect ? 'border-emerald-500' : 'border-red-500'} bg-slate-50 p-5 rounded-r-2xl">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="font-bold text-lg">Q${i+1}. ${q.q}</div>
+                            ${status}
+                        </div>
+                        <div class="text-base mt-3">
+                            <div class="mb-1"><span class="font-semibold text-slate-600">Your answer:</span> ${userChoice}</div>
+                            ${!isCorrect ? `<div class="mb-1"><span class="font-semibold text-emerald-700">Correct answer:</span> ${correctChoice}</div>` : ''}
+                            <div class="mt-3 text-sm bg-white p-3 rounded-xl border"><strong>Why:</strong> ${q.explanation}</div>
+                        </div>
+                    </div>
+                `);
+            });
+            
+            const percentage = Math.round((score / quizQuestions.length) * 100);
+            const passed = percentage >= 80;
+            
+            // Show results
+            document.getElementById('score-display').innerHTML = `${score} / ${quizQuestions.length} <span class="text-4xl align-super">(${percentage}%)</span>`;
+            document.getElementById('score-message').innerHTML = passed ? 
+                `🎉 Excellent work, Mom! You passed with flying colors!` : 
+                `Keep practicing — you're so close! Review the study guide and try again.`;
+            
+            document.getElementById('review-section').innerHTML = reviewHTML.join('');
+            
+            // Show modal
+            document.getElementById('results-modal').classList.remove('hidden');
+            document.getElementById('results-modal').classList.add('flex');
+        }
+
+        function closeResults() {
+            const modal = document.getElementById('results-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        function restartQuiz() {
+            closeResults();
+            startQuiz();
+        }
+
+        // Keyboard support
+        function setupKeyboard() {
+            document.addEventListener('keydown', function(e) {
+                const quizSection = document.getElementById('quiz');
+                if (quizSection.classList.contains('hidden')) return;
+                
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    const nextBtn = document.getElementById('next-btn');
+                    if (!nextBtn.classList.contains('hidden') && !nextBtn.disabled) {
+                        nextQuestion();
+                    } else {
+                        const submitBtn = document.getElementById('submit-btn');
+                        if (!submitBtn.classList.contains('hidden')) {
+                            submitQuiz();
+                        }
+                    }
+                }
+                
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevQuestion();
+                }
+                
+                // Number keys for options
+                if (['1','2','3','4'].includes(e.key)) {
+                    const index = parseInt(e.key) - 1;
+                    const options = document.querySelectorAll('#options-container button');
+                    if (options[index]) {
+                        options[index].click();
+                    }
+                }
+            });
+            
+            // Add hint text
+            console.log('%c[Quiz] Keyboard shortcuts: Arrow keys to navigate, 1-4 to select options, Space to advance', 'color:#64748b');
+        }
+
+        // Initialize everything
+        function initializeApp() {
+            initializeTailwind();
+            setupKeyboard();
+            
+            // Show home by default
+            document.getElementById('home').classList.remove('hidden');
+            
+            // Easter egg: Press 'M' for Minnesota pride
+            document.addEventListener('keypress', function(e) {
+                if (e.key.toLowerCase() === 'm') {
+                    const home = document.getElementById('home');
+                    if (!home.classList.contains('hidden')) {
+                        home.style.transition = 'transform 0.4s';
+                        home.style.transform = 'scale(1.02)';
+                        setTimeout(() => {
+                            home.style.transform = 'scale(1)';
+                        }, 400);
+                    }
+                }
+            });
+            
+            // Welcome message for mom
+            console.log('%c[App] Minnesota Driver\'s Quiz ready for Mom! Big text, simple buttons, lots of love.', 'color:#1e40af');
+            
+            // Preload first question data (for instant start)
+            // Nothing needed - data is already in memory
+        }
+
+        // Boot the app
+        window.onload = initializeApp;
+        
+        // Make functions available globally if needed
+        window.showSection = showSection;
+        window.startQuiz = startQuiz;
+    </script>
+</body>
+</html>
